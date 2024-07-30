@@ -4,15 +4,18 @@
     <title>alvvays0</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-    <meta property="og:title" content="hi this is my website" />
-    <meta property="og:image" content="https://github.com/Synthesiz-ed/web/blob/main/d25ff73d688a832d9e5a1ebf69e88067.png?raw=true" />
-    <meta property="og:url" content="https://yourdomain.com" />
+    <meta property="og:title" content="hi, this is where i keep my contact info" />
+    <meta property="og:description" content="below you'll find links to my socials and such" />
+    <meta property="og:image" content="https://github.com/Synthesiz-ed/web/blob/main/pfp.png?raw=true" />
+    <meta property="og:url" content="https://alvvays0.com" />
     <meta name="theme-color" content="#ff6347" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            background-color: black;
-            color: white;
+            background: url('https://github.com/Synthesiz-ed/web/blob/main/bg.jpg?raw=true') no-repeat center center fixed;
+            background-size: cover;
             font-family: 'IBM Plex Mono', monospace;
+            color: white;
             text-align: center;
             margin: 0;
             padding: 0;
@@ -21,69 +24,294 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;
         }
-        .container {
-            background-color: #333;
+        .window {
+            background-color: rgba(51, 51, 51, 0.8);
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: absolute;
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 80%;
+            max-width: 600px;
+            box-sizing: border-box;
+            z-index: 1000;
+            transition: transform 0.6s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.6s;
+            transform-origin: bottom right;
+            opacity: 1;
         }
-        h1, h2, h3 {
-            margin: 0;
-            font-weight: 400;
+        .window.hidden {
+            display: none;
         }
-        h1 {
+        .window-header {
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+        .window-controls {
+            display: flex;
+            align-items: center;
+        }
+        .window-controls div {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .close {
+            background-color: #ff5f57;
+        }
+        .minimize {
+            background-color: #ffbd2e;
+        }
+        .maximize {
+            background-color: #28c840;
+        }
+        .text-content {
+            text-align: left;
+            padding: 20px;
+        }
+        .text-content h1 {
             font-size: 2.5em;
             color: #ff6347;
+            margin: 0;
         }
-        h2 {
-            font-size: 1.5em;
+        .text-content p {
+            font-size: 1.2em;
+            margin: 10px 0 0 0;
         }
-        h3 {
-            font-size: 1em;
-        }
-        .social-links {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .social-links img {
-            width: 100px;
+        .image-content img {
+            border-radius: 15px;
+            max-width: 150px;
             height: auto;
-            margin: 20px 0;
-            vertical-align: middle;
+            max-height: 150px;
         }
-        .social-title {
-            margin-top: 40px;
-            font-size: 1.5em;
-            color: #ff6347;
+        .dock {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background: rgba(51, 51, 51, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .dock a {
+            margin: 0 10px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .dock a:hover {
+            transform: scale(1.5);
+        }
+        .dock img {
+            width: 50px;
+            height: 50px;
+        }
+        @keyframes genie-effect {
+            0% {
+                transform: scale(1) translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0) translate(0, 300px) skew(20deg);
+                opacity: 0;
+            }
+        }
+        @keyframes restore-genie-effect {
+            0% {
+                transform: scale(0) translate(0, 300px) skew(20deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translate(0, 0);
+                opacity: 1;
+            }
+        }
+        @media (max-width: 768px) {
+            body {
+                display: none;
+            }
+        }
+        .mute-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(51, 51, 51, 0.8);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>hey there</h1>
-            <h2>im alvvays0</h2>
-            <h3>i like messing around</h3>
-            <h4>bluestarsy is nice looking</h4>
-        </header>
-        <div class="social-title">My Socials</div>
-        <div class="social-links">
-            <a href="https://www.roblox.com/users/124521582/profile" target="_blank">
-                <img src="https://github.com/Synthesiz-ed/web/blob/main/Vector.png?raw=true" alt="Roblox">
-            </a>
-            <a href="https://discord.com/users/669333028362780683" target="_blank">
-                <img src="https://github.com/Synthesiz-ed/web/blob/main/Discord_logo.png?raw=true" alt="Discord">
-            </a>
-            <a href="https://steamcommunity.com/id/alvvays0/" target="_blank">
-                <img src="https://github.com/Synthesiz-ed/web/blob/main/Steam_2016_logo_black.png?raw=true" alt="Steam">
-            </a>
+    <audio id="background-audio" src="https://raw.githubusercontent.com/Synthesiz-ed/web/main/bgm.mp3" autoplay loop></audio>
+    <button class="mute-button" id="mute-button" onclick="toggleMute()">mute</button>
+
+    <div class="window" id="infoWindow">
+        <div class="window-header">
+            <div class="window-controls">
+                <div class="close" onclick="closeWindow('infoWindow')"></div>
+                <div class="minimize" onclick="minimizeWindow('infoWindow')"></div>
+                <div class="maximize"></div>
+            </div>
+        </div>
+        <div class="text-content">
+            <h1>hi, i'm alvvays0</h1>
+            <p>below you'll find links to my socials and such</p>
+        </div>
+        <div class="image-content">
+            <img src="https://github.com/Synthesiz-ed/web/blob/main/pfp.png?raw=true" alt="your image">
         </div>
     </div>
+
+    <div class="dock">
+        <a onclick="openLinkWindow('discord', 'https://discord.gg/WhMBPpkw')">
+            <img src="https://github.com/Synthesiz-ed/web/blob/main/Discord.png?raw=true" alt="discord">
+        </a>
+        <a onclick="openLinkWindow('roblox', 'https://www.roblox.com/users/124521582/profile')">
+            <img src="https://github.com/Synthesiz-ed/web/blob/main/Roblox.png?raw=true" alt="roblox">
+        </a>
+        <a onclick="openLinkWindow('steam', 'https://steamcommunity.com/id/alvvays0/')">
+            <img src="https://github.com/Synthesiz-ed/web/blob/main/Steam.png?raw=true" alt="steam">
+        </a>
+        <a onclick="openLinkWindow('mail', 'mailto:contact@alvvays0.com')">
+            <img src="https://github.com/Synthesiz-ed/web/blob/main/Mail.png" alt="mail">
+        </a>
+        <a onclick="openInfoWindow()">
+            <img src="https://github.com/Synthesiz-ed/web/blob/main/Notes.png?raw=true" alt="info">
+        </a>
+    </div>
+
+    <script>
+        function dragElement(el) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            el.onmousedown = dragMouseDown;
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                el.style.top = (el.offsetTop - pos2) + "px";
+                el.style.left = (el.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        function openLinkWindow(social, url) {
+            const linkWindow = createWindow();
+            linkWindow.innerHTML = `
+                <div class="window-header">
+                    <div class="window-controls">
+                        <div class="close" onclick="closeWindow('${linkWindow.id}')"></div>
+                        <div class="minimize" onclick="minimizeWindow('${linkWindow.id}')"></div>
+                        <div class="maximize"></div>
+                    </div>
+                </div>
+                <div class="text-content">
+                    <h1>here's my ${social} link:</h1>
+                    <button style="background-color: #ff6347; color: white; border: none; padding: 10px 20px; font-size: 1em; cursor: pointer; margin-top: 20px; border-radius: 5px;" onclick="window.location.href='${url}'">open ${social}</button>
+                </div>
+            `;
+            document.body.appendChild(linkWindow);
+            linkWindow.style.transformOrigin = 'bottom right';
+            linkWindow.style.animation = 'restore-genie-effect 0.6s forwards';
+        }
+
+        function openInfoWindow() {
+            const infoWindow = createWindow();
+            infoWindow.innerHTML = `
+                <div class="window-header">
+                    <div class="window-controls">
+                        <div class="close" onclick="closeWindow('${infoWindow.id}')"></div>
+                        <div class="minimize" onclick="minimizeWindow('${infoWindow.id}')"></div>
+                        <div class="maximize"></div>
+                    </div>
+                </div>
+                <div class="text-content">
+                    <h1>hi, i'm alvvays0</h1>
+                    <p>below you'll find links to my socials and such</p>
+                </div>
+                <div class="image-content">
+                    <img src="https://github.com/Synthesiz-ed/web/blob/main/pfp.png?raw=true" alt="your image">
+                </div>
+            `;
+            document.body.appendChild(infoWindow);
+            infoWindow.style.transformOrigin = 'bottom right';
+            infoWindow.style.animation = 'restore-genie-effect 0.6s forwards';
+        }
+
+        function createWindow() {
+            const newWindow = document.createElement('div');
+            newWindow.className = 'window';
+            newWindow.id = 'window-' + Date.now();
+            newWindow.style.position = 'absolute';
+            dragElement(newWindow);
+            return newWindow;
+        }
+
+        function closeWindow(windowId) {
+            const el = document.getElementById(windowId);
+            el.style.transformOrigin = 'bottom right';
+            el.style.animation = 'genie-effect 0.6s forwards';
+            setTimeout(() => {
+                el.remove();
+            }, 600);
+        }
+
+        function minimizeWindow(windowId) {
+            const el = document.getElementById(windowId);
+            el.style.transformOrigin = 'bottom right';
+            el.style.animation = 'genie-effect 0.6s forwards';
+            setTimeout(() => {
+                el.classList.add('hidden');
+            }, 600);
+        }
+
+        function toggleMute() {
+            const audio = document.getElementById('background-audio');
+            const muteButton = document.getElementById('mute-button');
+            if (audio.muted) {
+                audio.muted = false;
+                muteButton.textContent = 'mute';
+            } else {
+                audio.muted = true;
+                muteButton.textContent = 'unmute';
+            }
+        }
+
+        // redirect to another page on mobile
+        if (window.innerWidth <= 768) {
+            window.location.href = "mobile.html";
+        }
+    </script>
 </body>
 </html>

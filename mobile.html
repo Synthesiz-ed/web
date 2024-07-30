@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>alvvays0</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="hi this is my website" />
+    <meta property="og:image" content="https://github.com/Synthesiz-ed/web/blob/main/d25ff73d688a832d9e5a1ebf69e88067.png?raw=true" />
+    <meta property="og:url" content="https://yourdomain.com" />
+    <meta name="theme-color" content="#ff6347" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: url('https://github.com/Synthesiz-ed/web/blob/main/bg.jpg?raw=true') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'IBM Plex Mono', monospace;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-style: italic;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: move;
+            position: absolute;
+            width: 80%;
+            max-width: 600px;
+        }
+        h1, h2, h3 {
+            margin: 0;
+            font-weight: 400;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #ff6347;
+        }
+        h2 {
+            font-size: 1.5em;
+        }
+        h3 {
+            font-size: 1em;
+        }
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .social-links img {
+            width: 100px;
+            height: auto;
+            margin: 20px 0;
+            vertical-align: middle;
+        }
+        .social-title {
+            margin-top: 40px;
+            font-size: 1.5em;
+            color: #ff6347;
+        }
+        .contact {
+            margin-top: 20px;
+            font-size: 1em;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            h3 {
+                font-size: 0.9em;
+            }
+            .social-links img {
+                width: 80px;
+                margin: 10px 0;
+            }
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            dragElement(document.querySelector(".container"));
+
+            function dragElement(el) {
+                var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                el.onmousedown = dragMouseDown;
+
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    document.onmousemove = elementDrag;
+                }
+
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    el.style.top = (el.offsetTop - pos2) + "px";
+                    el.style.left = (el.offsetLeft - pos1) + "px";
+                }
+
+                function closeDragElement() {
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>hey there</h1>
+            <h2>im alvvays0</h2>
+            <h3>i like messing around</h3>
+        </header>
+        <div class="social-title">My Socials</div>
+        <div class="social-links">
+            <a href="https://www.roblox.com/users/124521582/profile" target="_blank">
+                <img src="https://github.com/Synthesiz-ed/web/blob/main/Vector.png?raw=true" alt="Roblox">
+            </a>
+            <a href="https://discord.gg/WhMBPpkw" target="_blank">
+                <img src="https://github.com/Synthesiz-ed/web/blob/main/Discord_logo.png?raw=true" alt="Discord">
+            </a>
+            <a href="https://steamcommunity.com/id/alvvays0/" target="_blank">
+                <img src="https://github.com/Synthesiz-ed/web/blob/main/Steam_2016_logo_black.png?raw=true" alt="Steam">
+            </a>
+        </div>
+        <div class="contact">
+            <p>Contact: <a href="mailto:contact@alvvays0.com" style="color: #ff6347;">contact@alvvays0.com</a></p>
+        </div>
+    </div>
+</body>
+</html>
